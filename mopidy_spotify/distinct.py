@@ -117,7 +117,7 @@ def _get_playlist_tracks(config, session):
 	if not isinstance(playlist, spotify.Playlist):
             continue
         if playlist.name is None:
-	  logger.error('Playlist is Null')
+	  logger.error('Playlist %s is corrupted, skipping ...', playlist)
           continue
 	playlist.load()
         for track in playlist.tracks:
