@@ -114,9 +114,12 @@ def _get_playlist_tracks(config, session):
         return
 
     for playlist in session.playlist_container:
-        if not isinstance(playlist, spotify.Playlist):
+	if not isinstance(playlist, spotify.Playlist):
             continue
-        playlist.load()
+        if playlist.name is None:
+	  logger.error('Playlist is Null')
+          continue
+	playlist.load()
         for track in playlist.tracks:
             try:
                 track.load()
